@@ -1,7 +1,7 @@
 import React from "react";
 import MyButton from "./UI/Button/MyButton";
 
-const Book = ({ book, removeBook, editBook, setVisible }) => {
+const Book = ({ book, removeBook, editBook, setModal }) => {
   return (
     <div className="book">
       <div className="book__img">{<img src={book.urlImage} />}</div>
@@ -13,7 +13,7 @@ const Book = ({ book, removeBook, editBook, setVisible }) => {
       <div className="book__btns">
         <MyButton
           onClick={() => {
-            setVisible(true);
+            setModal(true);
             editBook(book);
           }}
         >

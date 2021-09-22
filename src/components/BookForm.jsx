@@ -30,11 +30,8 @@ const BookForm = ({
       setBook({});
       setIsBook(false);
     } else {
-      console.log("name", !Number(book.name));
-      console.log("author", typeof book.author === "string");
-      console.log("yearPublished", Number(book.yearPublished) < 2018);
       alert(
-        "Проверьте введенные значения: Наименование и Автор - строки, Год выпуска - не больше 2017 года"
+        "Проверьте введенные значения: Наименование и Автор - текст, Год выпуска - число, не больше 2017 года"
       );
     }
   };
@@ -55,7 +52,6 @@ const BookForm = ({
           onChange={(e) => setBook({ ...book, name: e.target.value })}
           type="text"
           placeholder=""
-          required
         />
       </label>
       <label>
@@ -65,7 +61,6 @@ const BookForm = ({
           onChange={(e) => setBook({ ...book, author: e.target.value })}
           type="text"
           placeholder=""
-          required={true}
         />
       </label>
       <label>
@@ -75,7 +70,6 @@ const BookForm = ({
           onChange={(e) => setBook({ ...book, yearPublished: e.target.value })}
           type="text"
           placeholder=""
-          required={true}
         />
       </label>
       <label>
@@ -85,7 +79,6 @@ const BookForm = ({
           onChange={(e) => setBook({ ...book, urlImage: e.target.value })}
           type="text"
           placeholder=""
-          required={false}
         />
       </label>
       <MyButton onClick={(e) => addOrEditBook(e)}>Сохранить</MyButton>
