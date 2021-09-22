@@ -49,10 +49,13 @@ function App() {
     },
   ]);
 
+  const [book, setBook] = useState({});
+  const [isBook, setIsBook] = useState(false);
+
   const [modal, setModal] = useState(false);
 
   const createBook = (newBook) => {
-    setBooks([books, newBook]);
+    setBooks([...books, newBook]);
     setModal(false);
   };
 
@@ -60,16 +63,60 @@ function App() {
     setBooks(books.filter((b) => b.id !== book.id));
   };
 
+  const editBook = ({ id, name, author, yearPublished, urlImage }) => {
+    setBook({
+      id,
+      name,
+      author,
+      yearPublished,
+      urlImage,
+    });
+    setIsBook(true);
+  };
+
+  const changeBook = (book) => {
+    setBooks(
+      books.map((b) => {
+        if (b.id === book.id) return (b = book);
+        return b;
+      })
+    );
+    setModal(false);
+  };
+
+  const closeModalAndCancelEdit = () => {
+    setBook({});
+    setIsBook(false);
+  };
+
   return (
     <div className="App">
-      <MyButton style={{ marginTop: "30px" }} onClick={() => setModal(true)}>
+      <h1 style={{ marginTop: "30px" }}>Книжная полка</h1>
+      <MyButton style={{ marginTop: "20px" }} onClick={() => setModal(true)}>
         Добавить книгу
       </MyButton>
-      <MyModal visible={modal} setVisible={setModal}>
-        <BookForm create={createBook} />
+      <MyModal
+        visible={modal}
+        setVisible={setModal}
+        cancel={closeModalAndCancelEdit}
+      >
+        <BookForm
+          create={createBook}
+          change={changeBook}
+          book={book}
+          setBook={setBook}
+          isBook={isBook}
+          setIsBook={setIsBook}
+          setModal={setModal}
+        />
       </MyModal>
       {books.length ? (
-        <BookList remove={removeBook} books={books} />
+        <BookList
+          removeBook={removeBook}
+          editBook={editBook}
+          books={books}
+          setVisible={setModal}
+        />
       ) : (
         <h1 className="booklist__empty">Книги не найдены</h1>
       )}

@@ -7,10 +7,11 @@
 #root {
   display: flex;
   justify-content: center;
+  background: whitesmoke;
 }
 
 .App {
-  width: 800px;
+  width: 600px;
 }
 
 .open-btn {
@@ -23,6 +24,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: white;
   padding: 15px;
   border: 2px solid teal;
   margin-top: 15px;
@@ -30,8 +32,28 @@
 
 .book__img {
   display: flex;
-  width: 200px;
-  height: 200px;
+  justify-content: center;
+  align-items: center;
+  max-width: 100px;
+  max-height: 150px;
+}
+
+.book__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  max-width: 300px;
+  max-height: 300px;
+  flex: 0 0 66%;
+  flex-wrap: wrap;
+}
+
+.book__btns {
+  display: flex;
+  flex-direction: column;
+  max-width: 200px;
+  max-height: 150px;
 }
 
 img {

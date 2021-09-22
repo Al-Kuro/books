@@ -1,13 +1,13 @@
 import React from "react";
 import Book from "./Book";
 
-const BookList = ({ books, remove }) => {
+const BookList = ({ books, setVisible, ...rest }) => {
   return (
-    <>
+    <div>
       {books.map((book) => (
-        <Book remove={remove} key={book.id} book={book} />
+        <Book key={book.id} book={book} setVisible={setVisible} {...rest} />
       ))}
-    </>
+    </div>
   );
 };
 

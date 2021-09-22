@@ -1,7 +1,7 @@
 import React from "react";
 import MyButton from "./UI/Button/MyButton";
 
-const Book = ({ book, remove }) => {
+const Book = ({ book, removeBook, editBook, setVisible }) => {
   return (
     <div className="book">
       <div className="book__img">{<img src={book.urlImage} />}</div>
@@ -11,8 +11,15 @@ const Book = ({ book, remove }) => {
         <div>{book.yearPublished}</div>
       </div>
       <div className="book__btns">
-        <MyButton>Редактировать</MyButton>
-        <MyButton onClick={() => remove(book)}>Удалить</MyButton>
+        <MyButton
+          onClick={() => {
+            setVisible(true);
+            editBook(book);
+          }}
+        >
+          Редактировать
+        </MyButton>
+        <MyButton onClick={() => removeBook(book)}>Удалить</MyButton>
       </div>
     </div>
   );
